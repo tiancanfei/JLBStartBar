@@ -20,7 +20,7 @@ protocol JLBStartBarDelegate
 let score = scoreBar.score
 ```
 
-#### 设置评分 直接设置score属性
+#### 设置评分 直接设置score属性，支持xib设置
 ```
 scoreBar.score = 3.4
 ```
@@ -40,3 +40,5 @@ scoreBar.startSize = CGSize(width: 21, height: 21)
 ```
 scoreBar.padding = 5
 ```
+
+
