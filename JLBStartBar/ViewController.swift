@@ -23,26 +23,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
-}
-
-extension ViewController:UITextFieldDelegate
-{
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        scoreTextFeild.text = nil
-        
-        let score = (string as NSString).floatValue
-        print("\(score)")
-        if score >= 0 && score <= 5
+    @IBAction func score()
+    {
+        if let scoreText = (scoreTextFeild.text as NSString?)
         {
-            startBar.score = CGFloat(score)
-            return true
-        }
-        else
-        {
-            return false
+            let score = scoreText.floatValue
+            print("\(score)")
+            if score >= 0 && score <= 5
+            {
+                startBar.score = CGFloat(score)
+            }
         }
     }
+
 }
 
