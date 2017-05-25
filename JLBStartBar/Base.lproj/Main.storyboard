@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JLBStartBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pb-gk-26r" customClass="JLBStartBar" customModule="JLBStartBar" customModuleProvider="target">
+                                <rect key="frame" x="60" y="170" width="240" height="37"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="startSize">
+                                        <size key="value" width="21" height="21"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="highLightedStartImage" value="icon_daxingxinghuang"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="grayStartImage" value="icon_daxingxinghui"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入分数(分数&lt;=5)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-g9-Q5w">
+                                <rect key="frame" x="10" y="305" width="355" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dWZ-b8-M19"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="gTL-ug-KOn"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IZz-g9-Q5w" secondAttribute="trailing" constant="10" id="2DX-eQ-Nww"/>
+                            <constraint firstItem="0pb-gk-26r" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="MXw-3S-QlT"/>
+                            <constraint firstItem="IZz-g9-Q5w" firstAttribute="top" secondItem="0pb-gk-26r" secondAttribute="bottom" constant="98" id="Rdw-wx-TtU"/>
+                            <constraint firstAttribute="trailing" secondItem="0pb-gk-26r" secondAttribute="trailing" constant="75" id="cFP-Zd-UEu"/>
+                            <constraint firstItem="0pb-gk-26r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="60" id="dCY-2w-ubg"/>
+                            <constraint firstItem="IZz-g9-Q5w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="pMF-8Y-Fus"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0pb-gk-26r" secondAttribute="bottom" constant="460" id="yxh-vi-f6s"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scoreTextFeild" destination="IZz-g9-Q5w" id="nme-Kh-AEY"/>
+                        <outlet property="startBar" destination="0pb-gk-26r" id="56M-WW-aDn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="109"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_daxingxinghuang" width="21" height="21"/>
+        <image name="icon_daxingxinghui" width="21" height="21"/>
+    </resources>
+</document>
