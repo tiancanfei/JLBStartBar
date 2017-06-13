@@ -12,6 +12,9 @@ fileprivate let countOfStarts:NSInteger = 5
 fileprivate let defaultStartSize:CGSize = CGSize(width: 21, height: 21)
 fileprivate let defaultPadding:CGFloat = 10
 
+//是否开启隐式动画
+fileprivate let isAnimatable = true
+
 //MARK:- 代理
 protocol JLBStartBarDelegate
 {
@@ -256,7 +259,7 @@ class JLBStartView: UIView
         willSet
         {
             guard newValue != nil else {return}
-            grayStartImageView.image = newValue
+            grayStartLayer.contents = newValue?.cgImage
         }
     }
     @IBInspectable var highLightedStartImage:UIImage?
@@ -264,7 +267,7 @@ class JLBStartView: UIView
         willSet
         {
             guard newValue != nil else {return}
-            highLightedStartImageView.image = newValue
+            highLightedStartLayer.contents = newValue?.cgImage
         }
     }
     
@@ -282,6 +285,20 @@ class JLBStartView: UIView
         return _highLightedStartImageView
     }()
     
+    lazy var grayStartLayer:CALayer = {
+        let _grayStartLayer = CALayer()
+        _grayStartLayer.contentsGravity = kCAGravityCenter
+        _grayStartLayer.contentsScale = UIScreen.main.scale
+        return _grayStartLayer
+    }()
+    
+    lazy var highLightedStartLayer:CALayer = {
+        let _highLightedStartLayer = CALayer()
+        _highLightedStartLayer.contentsGravity = kCAGravityCenter
+        _highLightedStartLayer.contentsScale = UIScreen.main.scale
+        return _highLightedStartLayer
+    }()
+    
     
     /// 工厂方法创建🌟组建
     ///
@@ -292,34 +309,52 @@ class JLBStartView: UIView
     class func startView(grayStartImage:UIImage?,highLightedStartImage:UIImage?)->JLBStartView
     {
         let startView = JLBStartView(frame: CGRect.zero)
-        startView.grayStartImage = grayStartImage
-        startView.highLightedStartImage = highLightedStartImage
+        startView.grayStartLayer.contents = grayStartImage?.cgImage
+        startView.highLightedStartLayer.contents = highLightedStartImage?.cgImage
         return startView
     }
     
     override init(frame: CGRect)
     {
         super.init(frame: frame)
-        addSubview(grayStartImageView)
-        addSubview(highLightedStartImageView)
+        layer.addSublayer(grayStartLayer)
+        layer.addSublayer(highLightedStartLayer)
     }
     
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
-        addSubview(grayStartImageView)
-        addSubview(highLightedStartImageView)
+        layer.addSublayer(grayStartLayer)
+        layer.addSublayer(highLightedStartLayer)
     }
     
     override func layoutSubviews()
     {
         super.layoutSubviews()
         
-        let highLightedW = bounds.size.width * ratio
-        highLightedStartImageView.frame = CGRect(x: 0, y: 0, width: highLightedW, height: bounds.size.height)
+        if !isAnimatable
+        {
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+        }
         
-        let grayW = bounds.size.width * (1 - ratio)
-        let grayX = highLightedW
-        grayStartImageView.frame = CGRect(x: grayX, y: 0, width: grayW, height: bounds.size.height)
+        var grayStartLayerFrame = bounds
+        var highLightedStartLayerFrame = bounds
+        let width = bounds.size.width
+        
+        highLightedStartLayerFrame.size.width = width * ratio
+        grayStartLayerFrame.origin.x = width * ratio
+        grayStartLayerFrame.size.width = width * (1 - ratio)
+        
+        grayStartLayer.frame = grayStartLayerFrame
+        highLightedStartLayer.frame = highLightedStartLayerFrame
+        
+        grayStartLayer.contentsRect = CGRect(x: ratio, y: 0, width: 1 - ratio, height: 1)
+        highLightedStartLayer.contentsRect = CGRect(x: 0, y: 0, width: ratio, height: 1)
+        
+        if !isAnimatable
+        {
+            CATransaction.commit()
+        }
     }
 }

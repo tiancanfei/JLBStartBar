@@ -16,6 +16,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.layer.contents = UIImage.init(named: "icon_daxingxinghuang")?.cgImage
     }
     
     override func didReceiveMemoryWarning() {
