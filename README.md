@@ -41,4 +41,13 @@ scoreBar.startSize = CGSize(width: 21, height: 21)
 scoreBar.padding = 5
 ```
 
+#### 使用
+```
+use_frameworks!
+target '<Your Target Name>' do
+
+pod 'JLBStartBar'
+
+end
+```
 
