@@ -15,9 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreTextFeild: UITextField!
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.layer.contents = UIImage.init(named: "icon_daxingxinghuang")?.cgImage
+        super.viewDidLoad()        
     }
     
     override func didReceiveMemoryWarning() {
