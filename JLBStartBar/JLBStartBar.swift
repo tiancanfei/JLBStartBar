@@ -13,7 +13,7 @@ fileprivate let defaultStartSize:CGSize = CGSize(width: 21, height: 21)
 fileprivate let defaultPadding:CGFloat = 10
 
 //是否开启隐式动画
-fileprivate let isAnimatable = true
+fileprivate let isAnimatable = false
 
 //MARK:- 代理
 protocol JLBStartBarDelegate
@@ -270,20 +270,6 @@ class JLBStartView: UIView
             highLightedStartLayer.contents = newValue?.cgImage
         }
     }
-    
-    lazy var grayStartImageView:UIImageView = {
-        let _grayStartImageView = UIImageView()
-        _grayStartImageView.contentMode = .right
-        _grayStartImageView.clipsToBounds = true
-        return _grayStartImageView
-    }()
-    
-    lazy var highLightedStartImageView:UIImageView = {
-        let _highLightedStartImageView = UIImageView()
-        _highLightedStartImageView.contentMode = .left
-        _highLightedStartImageView.clipsToBounds = true
-        return _highLightedStartImageView
-    }()
     
     lazy var grayStartLayer:CALayer = {
         let _grayStartLayer = CALayer()
